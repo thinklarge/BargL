@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Unit 2 Rot 13</title>
+  </head>
+
+
+	<body>
+
+		<form method="post">
+		<table>
+			<tr>
+				<td>
+				UserName
+				</td>
+				<td>
+				<input type="text" name="username" value='{{username}}'></input>
+				</td>
+				<td>
+				<font color="red" name="UserNameError">{{UserNameError}}</font> 
+				</td>	
+			</tr>
+			<tr>
+				<td>
+				Password
+				</td>
+				<td>
+				<input type="password" name="password">
+				</td>
+				<td>
+				<font color="red" name="PasswordOrigError">{{PasswordOrigError}}</font> 
+				</td>	
+			</tr>
+			<tr>
+				<td>
+				Password (check)
+				</td>
+				<td>
+				<input type="password" name="verify">
+				</td>
+				<td>
+				<font color="red" name="PasswordRepeatError">{{PasswordRepeatError}}</font> 
+				</td>	
+			</tr>
+			<tr>
+				<td>
+				Email
+				</td>
+				<td>
+				<input type="text" name="email" value='{{email}}'>
+				</td>
+				<td>
+				<font color="red" name="EmailError">{{EmailError}}</font> 
+				</td>	
+			</tr>
+		</table>
+		<input type="submit">
+		</form>
+	</body>
+</html>

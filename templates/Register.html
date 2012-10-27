@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<html>
+  <head>
+
+    <title>
+		Logon Screen:
+	
+	</title>
+  </head>
+  <body>
+	<form method="post">
+		<table>
+			<tr>
+				<td>User Name: </td> 
+				<td><input type="text" name="username" id="u_name" value="{{uName}}"/></td>
+				<td class="error">{{error_username}}</td>
+			</tr>
+			<tr>
+				<td>Password: </td> 
+				<td><input type="password" name="password" id="u_pass" value="{{uPass}}"/></td>
+				<td class="error">{{error_password}}</td>
+			</tr>
+			<tr>
+				<td>Verify Password: </td> 
+				<td><input type="password" name="verify" id="pass_ver" value="{{verify}}"/></td>
+				<td class="error">{{error_verify}}</td>
+			</tr>
+			<tr>
+				<td>Password: </td> 
+				<td><input type="text" name="email" id="u_email" value="{{email}}"/></td>
+				<td class="error">{{error_email}}</td>
+			</tr>
+				
+		</table>
+		<input type="submit" name="UserSubm" value="Create User"/>
+	</form>
+	<a href="/blog/login">Login</a> 
+  
+  </body>
+</html>

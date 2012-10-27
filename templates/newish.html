@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>A canvas moveto example</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript">
+	function dothis(){
+		grid = [[1,2,3,4],[5,6,7,8]];
+		var tic = { };
+		tic = grid;
+		str = JSON.stringify(tic);
+
+			
+		$.post("http://localhost:8082/blah", { name: str, time: "2pm" },
+		 function(data) {
+     alert("Data Loaded: " + data);
+	 $('html').html(data);
+   });
+	};	
+
+	window.onload = function() {
+	
+
+
+	
+	};
+    </script>
+    <style type="text/css">
+      body { margin: 20px; font-family: arial,verdana,helvetica; background: #fff;}
+      h1 { font-size: 140%; font-weight:normal; color: #036; border-bottom: 1px solid #ccc; }
+      canvas { border: 2px solid #000; float: left; margin-right: 1000px; margin-bottom: 1000px; }
+      pre { float:left; display:block; background: rgb(238,238,238); border: 1px dashed #666; padding: 15px 20px; margin: 0 0 10px 0; }
+    </style>
+  </head>
+
+  <body>
+
+	<p>
+	{{name}}<br/>
+	</p>
+
+	<button onclick="dothis()">This is a button</button>
+		
+  </body>
+
+</html>

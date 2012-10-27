@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      #myCanvas {
+        border: 1px solid #9C9898;
+      }
+    </style>
+    <script>
+	var xwid = 50;
+	var ywid = 50;
+	
+	window.requestAnimFrame = (function(callback) {
+		return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+		function(callback) {
+		window.setTimeout(callback, 1000 / 60);
+		};
+	})();
+	
+	function drawGrid(grid, ctx)
+	{
+		ctx.fillRect(0,0,550,350);
+		ctx.clearRect(25,25,500,300);
+		x_end = grid.length
+		y_end = grid[0].length
+		for (xi = 0; xi < x_end; xi++){
+			for (yi = 0; yi < y_end; yi++){
+				if (grid[xi][yi] == 1)
+				{
+					drawCircle(ctx, (xi+1)*50, (1+yi)*50)
+				}
+		
+			}
+		}
+
+	}
+	
+	function drawCircle(ctx,x,y)
+	{
+		ctx.setTransform(1,0,0,1,0,0);
+		ctx.beginPath();
+		ctx.arc(x,y,25, Math.PI*2,0,true);
+		ctx.closePath();
+		ctx.fill();
+		
+	}
+
+	function drawCar(ctx, car, theta){
+
+	ctx.setTransform(1,0,0,1,car.x+car.width/2+50,car.y+50);
+	theta = car.theta
+	ctx.rotate(theta);
+	ctx.fillRect(-car.width/2,-car.height/2,car.width,car.height);
+
+	}
+	function pausecomp(ms) {
+	ms += new Date().getTime();
+	while (new Date() < ms){}
+} 
+	function animate(myRectangle, canvas, context, startTime, i) {
+	// update
+		var time = (new Date()).getTime() - startTime;
+		var myJson = {{jsonStr}};
+						
+		pausecomp(1)
+		i++;
+		ender = 10000;
+
+		if (i == ender)
+		{
+			alert("done");
+		}
+		else
+		{
+
+			myRectangle.x = myJson[i.toString()]["x"]*50;
+			myRectangle.y = myJson[i.toString()]["y"]*50;
+			myRectangle.theta = myJson[i.toString()]["theta"];
+			
+
+			// clear
+			context.setTransform(1,0,0,1,0,0);
+			context.clearRect(0, 0, canvas.width, canvas.height);
+
+			drawCar(context, myRectangle, 0);
+
+			// request new frame
+			requestAnimFrame(function() {
+			  animate(myRectangle, canvas, context, startTime, i);
+			 
+			});
+		}
+	}
+
+	window.onload = function() {
+		var canvas = document.getElementById('myCanvas');
+		var context = canvas.getContext('2d');
+		var canvas2 = document.getElementById('myCanvas2');
+		var context2 = canvas2.getContext('2d');
+		
+		var grid = {{blocks}}
+		drawGrid(grid, context2)
+
+		var myRectangle = {
+		  x: 0,
+		  y: 0,
+		  width: 25,
+		  height: 12,
+		  theta: 0,
+		  borderWidth: 5
+		};
+
+		drawCar(context, myRectangle,0);
+
+		// wait one second before starting animation
+		setTimeout(function() {
+		  var startTime = (new Date()).getTime();
+		  animate(myRectangle, canvas, context, startTime, 0);
+		}, 1000);
+	};
+
+    </script>
+  </head>
+  <body>
+    <canvas style="position: absolute;" id="myCanvas" width="550" height="350"></canvas>
+	<canvas style="position: absolute;" id="myCanvas2" width="550" height="350"></canvas>
+  </body>
+</html>
